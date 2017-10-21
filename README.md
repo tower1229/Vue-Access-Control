@@ -1,2 +1,3 @@
 # Vue-Access-Control
-Frontend access control system based Vue
+Frontend access framework system based Vue
+coming soon...
