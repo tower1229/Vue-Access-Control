@@ -12,8 +12,13 @@
 
 [用addRoutes实现动态路由](http://refined-x.com/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/)
 
-## Live Example
+## Download
 
+```
+git clone https://github.com/tower1229/Vue-Access-Control.git
+```
+
+## Live Example
 
 test account
 
