@@ -4,9 +4,11 @@
 
 ## Introduction
 
-[Vue2.0用户权限控制解决方案]()
+Vue-Access-Control is a solution of front-end user rights control based on Vue/Vue-Router/axios,through the control of three levels of routing, view and request, the developer can realize the user authority control of any granularity.
 
 ## Documentation
+
+[Vue2.0用户权限控制解决方案]()
 
 [基于Vue实现后台系统权限控制](http://refined-x.com/2017/08/29/%E5%9F%BA%E4%BA%8EVue%E5%AE%9E%E7%8E%B0%E5%90%8E%E5%8F%B0%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/)
 
@@ -14,13 +16,19 @@
 
 ## Download
 
+git:
+
 ```
 git clone https://github.com/tower1229/Vue-Access-Control.git
 ```
 
+github:
+
+https://github.com/tower1229/Vue-Access-Control
+
 ## Live Example
 
-test account
+test account:
 
 ```
 1. username: root
@@ -29,7 +37,7 @@ test account
    password: any password
 ```
 
-live example
+live example:
 
 [vue-access-control.refined-x.com](http://vue-access-control.refined-x.com/)
 
