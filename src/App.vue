@@ -108,10 +108,9 @@ export default {
       return allowedRouter;
     },
     extendRoutes: function(allowedRouter) {
-      let vm = this;
       let originPath = util.deepcopy(userPath);
       originPath[0].children = allowedRouter;
-      vm.$router.addRoutes(originPath.concat([{
+      this.$router.addRoutes(originPath.concat([{
         path: '*',
         redirect: '/404'
       }]));
