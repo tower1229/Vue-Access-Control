@@ -20,15 +20,12 @@ Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权�
 
 ## 下载
 
-git:
+项目主页：http://refined-x.com/Vue-Access-Control/
 
-``` bash
-git clone https://github.com/tower1229/Vue-Access-Control.git
-```
+git：`git clone https://github.com/tower1229/Vue-Access-Control.git`
 
-github:
+npm：`npm i vue-access-control`
 
-https://github.com/tower1229/Vue-Access-Control
 
 ## 演示
 

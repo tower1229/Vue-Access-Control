@@ -20,15 +20,12 @@ Vue-Access-Control is a solution of front-end user rights control based on Vue/V
 
 ## Download
 
-git:
+homepage: http://refined-x.com/Vue-Access-Control/
 
-``` bash
-git clone https://github.com/tower1229/Vue-Access-Control.git
-```
+git: `git clone https://github.com/tower1229/Vue-Access-Control.git`
 
-github:
+npm: `npm i vue-access-control`
 
-https://github.com/tower1229/Vue-Access-Control
 
 ## Live Example
 
