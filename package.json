@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Frontend access control framework based Vue",
   "author": "tower1229 <tower1229@qq.com>",
-  "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",

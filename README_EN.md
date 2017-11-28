@@ -1,14 +1,14 @@
-中文 | [English](README_EN.md)
+English | [中文](README.md)
 
 # vue-access-control
 
-> Vue权限管理解决方案
+> Frontend access control framework based Vue
 
-## 介绍
+## Introduction
 
-Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
+Vue-Access-Control is a solution of front-end user rights control based on Vue/Vue-Router/axios,through the control of three levels of routing, view and request, the developer can realize the user authority control of any granularity.
 
-## 文档
+## Documentation
 
 [Vue2.0用户权限控制解决方案]()
 
@@ -16,7 +16,7 @@ Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权�
 
 [用addRoutes实现动态路由](http://refined-x.com/2017/09/01/%E7%94%A8addRoutes%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/)
 
-## 下载
+## Download
 
 git:
 
@@ -28,22 +28,22 @@ github:
 
 https://github.com/tower1229/Vue-Access-Control
 
-## 演示
+## Live Example
 
-测试账号:
+test account:
 
 ``` bash
 1. username: root
-   password: 任意
+   password: any password
 2. username: client
-   password: 任意
+   password: any password
 ```
 
-演示地址:
+live example:
 
 [vue-access-control.refined-x.com](http://vue-access-control.refined-x.com/)
 
-## 运行及构建
+## Build Setup
 
 ``` bash
 # install dependencies
@@ -61,10 +61,10 @@ npm run build --report
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-## 许可证
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2017-present, [前端路上](http://refined-x.com)
+Copyright (c) 2017-present, [refined-x.com](http://refined-x.com)
 
 <br /><br />

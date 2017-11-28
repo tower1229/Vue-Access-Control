@@ -18,7 +18,7 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   let routeName = to.meta.name || to.name;
-  window.document.title = (routeName ? routeName + ' - ' : '') + '药盟·会员管理系统';
+  window.document.title = (routeName ? routeName + ' - ' : '') + 'Vue-Access-Control';
   next();
 });
 
