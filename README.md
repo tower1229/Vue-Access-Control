@@ -2,7 +2,9 @@
 
 # vue-access-control
 
-> Vue权限管理解决方案
+[![npm](https://img.shields.io/npm/v/vue-access-control.svg)](https://www.npmjs.com/package/vue-access-control/)  [![license](https://img.shields.io/github/license/tower1229/vue-access-control.svg)]()
+
+> :gem: Vue权限管理解决方案
 
 ## 介绍
 

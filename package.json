@@ -1,12 +1,21 @@
 {
   "name": "vue-access-control",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Frontend access control framework based Vue",
-  "author": "tower1229 <tower1229@qq.com>",
+  "keywords": [
+    "vue",
+    "access-control"
+  ],
+  "author": "tower1229@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tower1229/Vue-Access-Control"
+  },
+  "main": "build/build.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-
     "build": "node build/build.js"
   },
   "dependencies": {
