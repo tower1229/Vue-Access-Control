@@ -4,9 +4,7 @@ const preUrlPath = '';
 const request = {
   p: ['get,/accounts'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/accounts`, {
-      params: params
-    })
+    return instance.get(`${preUrlPath}/GET/accounts`, {params})
   }
 }
 //删除账户
