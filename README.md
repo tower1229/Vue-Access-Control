@@ -6,6 +6,8 @@
 
 > :gem: Vue权限管理解决方案
 
+![logo](https://github.com/tower1229/tower1229.github.io/raw/master/asset/vsc-logo.png)
+
 ## 介绍
 
 Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
