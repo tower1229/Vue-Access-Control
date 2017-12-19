@@ -136,15 +136,15 @@ export default {
   data() {
     return {
       user: {},
-      activeMenu: "",
-      menus: [],
-      breadcrumbs: []
+      menus: []
     };
   },
-  watch: {
-    $route: function(to, from) {
-      this.activeMenu = this.$route.name;
-      this.breadcrumbs = (this.$route && this.$route.matched) || [];
+  computed: {
+    activeMenu: function(){
+      return this.$route.name
+    },
+    breadcrumbs: function(){
+      return (this.$route && this.$route.matched) || []
     }
   },
   methods: {
@@ -164,8 +164,6 @@ export default {
     let user = this.$parent.userData;
     if (user) {
       this.user = user;
-      this.activeMenu = this.$route.name;
-      this.breadcrumbs = (this.$route && this.$route.matched) || [];
     } else {
       this.$router.push({ path: "/login" });
     }
