@@ -85,6 +85,8 @@ export default {
         });
       };
       setMenu2Hash(arrayMenus);
+      //全局挂载hashMenus
+      this.$root.hashMenus = hashMenus;
       //遍历本地路由
       let findLocalRoute = function(array, base) {
         let replyResult = [];
@@ -108,9 +110,20 @@ export default {
       return allowedRouter;
     },
     extendRoutes: function(allowedRouter) {
+      let vm = this;
+      let actualRouter = util.deepcopy(allowedRouter);
+      actualRouter.map(e => {
+        return e.beforeEnter = function(to, from, next){
+          if(vm.$root.hashMenus[to.path]){
+            next()
+          }else{
+            next('/401')
+          }
+        }
+      });
       let originPath = util.deepcopy(userPath);
-      originPath[0].children = allowedRouter;
-      this.$router.addRoutes(originPath.concat([{
+      originPath[0].children = actualRouter;
+      vm.$router.addRoutes(originPath.concat([{
         path: '*',
         redirect: '/404'
       }]));
