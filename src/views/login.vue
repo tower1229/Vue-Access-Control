@@ -9,7 +9,7 @@
   <div>
     <div class="g-center login-page" @keyup.enter="login">
       <el-form class="login-form">
-        <h1 class="main-title">Vue-Access-Control</h1>
+        <h1 class="main-title"><a href="http://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank">Vue-Access-Control</a></h1>
         <p class="des">Frontend access control framework based Vue</p>
         <el-form-item>
           <el-input
