@@ -1,5 +1,4 @@
 import axios from 'axios';
-import router from '../router';
 import * as util from '../assets/util.js';
 
 const instance = axios.create({
