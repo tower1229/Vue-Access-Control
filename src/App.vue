@@ -112,9 +112,14 @@ export default {
     },
     extendRoutes: function(allowedRouter) {
       let vm = this;
-      //为动态路由添加独享守卫
       let actualRouter = util.deepcopy(allowedRouter);
       actualRouter.map(e => {
+        //复制子菜单信息到meta用于实现导航相关效果，非必需
+        if (e.children) {
+          if (!e.meta) e.meta = {};
+          e.meta.children = e.children;
+        }
+        //为动态路由添加独享守卫
         return e.beforeEnter = function(to, from, next){
           if(vm.$root.hashMenus[to.path]){
             next()
@@ -130,17 +135,6 @@ export default {
         path: '*',
         redirect: '/404'
       }]));
-    },
-    storageMenu: function(allowedRouter) {
-      //将子菜单数据复制到meta中，用于实现父级页面功能列表，非必需
-      allowedRouter.forEach(route => {
-        if (route.children) {
-          if (!route.meta) route.meta = {};
-          route.meta.children = route.children;
-        }
-      });
-      //保存菜单数据
-      this.menuData = allowedRouter;
     },
     signin: function(callback) {
       let vm = this;
@@ -171,9 +165,8 @@ export default {
         }
         //动态注入路由
         vm.extendRoutes(allowedRouter);
-        //保存菜单数据
-        vm.storageMenu(allowedRouter);
-        //保存用户信息
+        //保存数据用作他处，非必需
+        vm.menuData = allowedRouter;
         vm.userData = userInfo;
         //权限检验方法
         Vue.prototype.$_has = function(rArray) {
