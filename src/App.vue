@@ -198,8 +198,15 @@ export default {
       });
     },
     logoutDirect: function(){
-      //退出时清除路由权限控制
+      //清除session
+      util.session('token','');
+      //清除请求权限控制
       instance.interceptors.request.eject(myInterceptor);
+      //清除菜单权限
+      this.$root.hashMenus = {};
+      //清除请求头token
+      instance.defaults.headers.common['Authorization'] = '';
+      //回到登录页
       this.$router.replace({path: '/login'});
     }
   },
