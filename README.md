@@ -68,12 +68,3 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 Copyright (c) 2017-present, [refined-x.com](http://refined-x.com)
 
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?f10103677155b485824f29def715eb5d";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
