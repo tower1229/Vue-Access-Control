@@ -44,7 +44,7 @@ const requestLogin = params => {
   let words = CryptoJS.enc.Utf8.parse(params.password);
   let base64 = CryptoJS.enc.Base64.stringify(words);
   params.password = base64;
-  return axios.get(`http://rap2api.taobao.org/app/mock/224/GET/web`, {params})
+  return axios.get(`http://rap2api.taobao.org/app/mock/224/web`, {params})
 };
 
 export default {

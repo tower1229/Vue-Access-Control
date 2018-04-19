@@ -4,7 +4,7 @@ const preUrlPath = '';
 const request = {
   p: ['get,/medications'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/medications`, {params})
+    return instance.get(`${preUrlPath}/medications`, {params})
   }
 };
 //批量删除药品
@@ -18,7 +18,7 @@ const remove = {
 const notAllowed = {
   p: ['get,/roles/notAllowed'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/roles/notAllowed`, {params})
+    return instance.get(`${preUrlPath}/roles/notAllowed`, {params})
   }
 }
 

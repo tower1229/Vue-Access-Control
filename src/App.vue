@@ -146,7 +146,7 @@ export default {
       //设置请求头统一携带token
       instance.defaults.headers.common['Authorization'] = 'Bearer ' + localUser.token;
       //获取用户信息及权限数据
-      instance.get(`/GET/signin`, {
+      instance.get(`/signin`, {
         params: {
           Authorization: localUser.token
         }

@@ -4,7 +4,7 @@ const preUrlPath = '';
 const request = {
   p: ['get,/accounts'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/accounts`, {params})
+    return instance.get(`${preUrlPath}/accounts`, {params})
   }
 }
 //删除账户
@@ -29,7 +29,7 @@ const edit = {
 const notAllowed = {
   p: ['get,/roles/notAllowed'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/roles/notAllowed`, {params})
+    return instance.get(`${preUrlPath}/roles/notAllowed`, {params})
   }
 }
 

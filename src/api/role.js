@@ -4,7 +4,7 @@ const preUrlPath = '';
 const request = {
   p: ['get,/roles'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/roles`, {params})
+    return instance.get(`${preUrlPath}/roles`, {params})
   }
 };
 //删除角色
@@ -18,7 +18,7 @@ const remove = {
 const notAllowed = {
   p: ['get,/roles/notAllowed'],
   r: params => {
-    return instance.get(`${preUrlPath}/GET/roles/notAllowed`, {params})
+    return instance.get(`${preUrlPath}/roles/notAllowed`, {params})
   }
 }
 
