@@ -2,11 +2,15 @@ English | [中文](README_CN.md)
 
 # vue-access-control
 
-[![npm](https://img.shields.io/npm/v/vue-access-control.svg)](https://www.npmjs.com/package/vue-access-control/)  [![license](https://img.shields.io/github/license/tower1229/Vue-Access-Control.svg)]()
+[![npm](https://img.shields.io/npm/v/vue-access-control.svg)](https://www.npmjs.com/package/vue-access-control/) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control?ref=badge_shield)
+ [![license](https://img.shields.io/github/license/tower1229/Vue-Access-Control.svg)]()
 
 > :gem: Frontend access control framework based Vue
 
 ![logo](https://github.com/tower1229/tower1229.github.io/raw/master/asset/vsc-logo.png)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control?ref=badge_large)
 
 ## Introduction
 
@@ -67,4 +71,3 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control?ref=badge_large)
 
 Copyright (c) 2017-present, [refined-x.com](http://refined-x.com)
-
