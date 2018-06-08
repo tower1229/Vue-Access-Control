@@ -64,7 +64,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftower1229%2FVue-Access-Control?ref=badge_large)
 
 Copyright (c) 2017-present, [refined-x.com](http://refined-x.com)
 
