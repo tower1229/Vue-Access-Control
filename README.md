@@ -6,7 +6,7 @@ English | [中文](README_CN.md)
 
 > :gem: Frontend access control framework based Vue
 
-![logo](https://github.com/tower1229/tower1229.github.io/raw/master/asset/vsc-logo.png)
+![logo](https://refined-x.com/asset/vsc-logo.png)
 
 ## Introduction
 

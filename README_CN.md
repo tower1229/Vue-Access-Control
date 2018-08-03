@@ -6,7 +6,7 @@
 
 > :gem: Vue权限管理解决方案
 
-![logo](https://github.com/tower1229/tower1229.github.io/raw/master/asset/vsc-logo.png)
+![logo](https://refined-x.com/asset/vsc-logo.png)
 
 ## 介绍
 
