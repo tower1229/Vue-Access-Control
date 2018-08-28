@@ -42,7 +42,7 @@ npm：`npm i vue-access-control`
 
 演示地址:
 
-[vue-access-control.refined-x.com](http://vue-access-control.refined-x.com/)
+[http://refined-x.com/Vue-Access-Control/](http://refined-x.com/Vue-Access-Control/)
 
 ## 运行及构建
 
@@ -51,16 +51,13 @@ npm：`npm i vue-access-control`
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run serve
 
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## 许可证
 

@@ -104,7 +104,7 @@
           </el-submenu>
         </template>
         <template v-else>
-          <el-menu-item :route="route" :index="route.name">{{route.meta.name || route.name}}</el-menu-item>
+          <el-menu-item :route="route" :index="route.name" :key="'nav'+index">{{route.meta.name || route.name}}</el-menu-item>
         </template>
       </template>
     </el-menu>

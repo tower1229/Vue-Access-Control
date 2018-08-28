@@ -14,7 +14,7 @@ export const session = function(key, value){
   }else {
     if (typeof(value)==="object" || Array.isArray(value)) {
       value = 'autostringify-' + JSON.stringify(value);
-    };
+    }
     return sessionStorage.setItem(key, value);
   }
 } 
@@ -48,7 +48,7 @@ export const buildMenu = function (array, ckey) {
   let menuData = [];
   let indexKeys = Array.isArray(array) ? array.map((e) => {return e.id}) : [];
   ckey = ckey || 'parent_id';
-  array.forEach(function (e, i) {
+  array.forEach(function (e) {
     //一级菜单
     if (!e[ckey] || (e[ckey]===e.id)) {
       delete e[ckey];
