@@ -6,7 +6,11 @@ import App from './App.vue';
 import router from './router';
 
 Vue.use(ElementUI);
-//权限指令
+
+/*
+* v-has
+*/
+
 Vue.directive('has', {
   bind: function(el, binding) {
     if (!Vue.prototype.$_has(binding.value)) {

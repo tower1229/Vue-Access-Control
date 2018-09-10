@@ -9,10 +9,11 @@
 <script>
 import Vue from 'vue';
 import instance from './api';
-import userPath from './router/fullpath';
+import AllRoutesData from './router/fullpath';
 import * as util from './assets/util.js';
 
-//请求拦截句柄
+// axios Interceptor
+
 let myInterceptor;
 
 export default {
@@ -23,40 +24,29 @@ export default {
     }
   },
   methods: {
-    getPermission: function(userInfo) {
-      let resourcePermission = {};
-      if (Array.isArray(userInfo.resources)) {
-        userInfo.resources.forEach(function(e, i) {
-          let key = e.method.toLowerCase() + ',' + e.url;
-          resourcePermission[key] = true;
-        });
-      }
-      return resourcePermission;
-    },
     setInterceptor: function(resourcePermission) {
-      let vm = this;
-      myInterceptor = instance.interceptors.request.use(function(config) {
-        //得到请求路径
-        let perName = config.url.replace(config.baseURL, '').replace('/GET','').replace('/POST','').split('?')[0];
-        //权限格式1 /path/${param}
+      myInterceptor = instance.interceptors.request.use(config => {
+        // Get request path
+        
+        let perName = config.url.replace(config.baseURL, '').split('?')[0];
+        //RESTful type 1 /path/**
         let reg1 = perName.match(/^(\/[^\/]+\/)[^\/]+$/);
         if (reg1) {
           perName = reg1[1] + '**';
         }
-        //权限格式2 /path/${param}/path
+        //RESTful type 2 /path/*/path
         let reg2 = perName.match(/^\/[^\/]+\/([^\/]+)\/[^\/]+$/);
         if (reg2) {
           perName = perName.replace(reg2[1], '*');
         }
-        //校验权限
+
+        // Check permissions
+        
         if (!resourcePermission[config.method + ',' + perName]) {
-          //调试信息
-          console.warn(resourcePermission, config.method + ',' + perName);
-          vm.$message({
+          this.$message({
             message: '无访问权限，请联系企业管理员',
             type: 'warning'
           });
-          //拦截请求
           return Promise.reject({
             message: 'no permission'
           });
@@ -64,36 +54,64 @@ export default {
         return config;
       });
     },
-    getRoutes: function(userInfo) {
-      if(!userInfo.menus){
-        return console.warn(userInfo);
+    getResources: function(userPermissions) {
+      let resourceHash = {};
+      if (Array.isArray(userPermissions.resources)) {
+        /*
+        * Input like this:
+        * [{
+        *   id: "2c9180895e172348015e1740805d000d"
+            method: "GET"
+            url: "/some-url"
+        * }]
+        */
+        userPermissions.resources.forEach(e => {
+          let key = e.method.toLowerCase() + ',' + e.url;
+          resourceHash[key] = true;
+        });
       }
-      let vm = this;
-      let allowedRouter = [];
-      //将菜单数据转成多维数组格式
-      let arrayMenus = util.buildMenu(userInfo.menus);
-      //将多维数组转成对象格式
-      let hashMenus = {};
+      // Get hash structure
+      return resourceHash;
+    },
+    getRoutes: function(userPermissions) {
+      let routeHash = {};
       let setMenu2Hash = function(array, base) {
         array.map(key => {
           if (key.route) {
             let hashKey = ((base ? base + '/' : '') + key.route).replace(/^\//, '');
-            hashMenus['/' + hashKey] = true;
+            routeHash['/' + hashKey] = true;
             if (Array.isArray(key.children)) {
               setMenu2Hash(key.children, key.route);
             }
           }
         });
       };
-      setMenu2Hash(arrayMenus);
-      //全局挂载hashMenus，用于实现路由守卫
-      this.$root.hashMenus = hashMenus;
-      //筛选本地路由方法
+      if (Array.isArray(userPermissions.menus)) {
+      /*
+      * Input Like this: 
+      * [{
+      *   id: "2c9180895e13261e015e13469b7e0000",
+      *   name: "账户管理",
+      *   parent_id: "2c9180895e13261e015e13469b7e0000",
+      *   route: "some-route"
+      * }]
+      */
+        let arrayMenus = util.buildMenu(userPermissions.menus);
+        setMenu2Hash(arrayMenus);
+      }
+      // Get hash structure
+      return routeHash;
+    },
+    extendRoutes: function(routePermission) {
+
+      // Filtering local routes, get actual routing
+      
+      let actualRouter = [];
       let findLocalRoute = function(array, base) {
         let replyResult = [];
-        array.forEach(function(route) {
+        array.forEach(route => {
           let pathKey = (base ? base + '/' : '') + route.path;
-          if (hashMenus[pathKey]) {
+          if (routePermission[pathKey]) {
             if (Array.isArray(route.children)) {
               route.children = findLocalRoute(route.children, route.path);
             }
@@ -103,114 +121,184 @@ export default {
         if (base) {
           return replyResult;
         } else {
-          allowedRouter = allowedRouter.concat(replyResult);
+          actualRouter = actualRouter.concat(replyResult);
         }
       }
-      let originPath = util.deepcopy(userPath[0].children);
-      findLocalRoute(originPath);
-      return allowedRouter;
-    },
-    extendRoutes: function(allowedRouter) {
-      let vm = this;
-      let actualRouter = util.deepcopy(allowedRouter);
+      findLocalRoute(AllRoutesData[0].children);
+      
+      // If the user does not have any routing authority
+
+      if (!actualRouter || !actualRouter.length) {
+        // clear token, refresh page will jump to login screen.
+        util.session('token','');
+        // Interface hints
+        return document.body.innerHTML = ('<h1>账号访问受限，请联系系统管理员！</h1>');
+      }
+      
       actualRouter.map(e => {
-        //复制子菜单信息到meta用于实现导航相关效果，非必需
+
+        // Copy 'children' to 'meta' for rendering menu.(This step is optional.)
+
         if (e.children) {
           if (!e.meta) e.meta = {};
           e.meta.children = e.children;
         }
-        //为动态路由添加独享守卫
-        return e.beforeEnter = function(to, from, next){
-          if(vm.$root.hashMenus[to.path]){
+        
+        // Add Per-Route Guard
+        // To prevent manual access to ultra vires routing after switching accounts
+        
+        return e.beforeEnter = (to, from, next) => {
+          if(routePermission[to.path]){
             next()
           }else{
             next('/401')
           }
         }
       });
-      let originPath = util.deepcopy(userPath);
+
+      // Add actual routing to application
+
+      let originPath = util.deepcopy(AllRoutesData);
       originPath[0].children = actualRouter;
-      //注入路由
-      vm.$router.addRoutes(originPath.concat([{
+      this.$router.addRoutes(originPath.concat([{
         path: '*',
         redirect: '/404'
       }]));
+
+      // Save information for rendering menu.(This step is optional.)
+      
+      this.$root.menuData = actualRouter;
+
     },
     signin: function(callback) {
       let vm = this;
-      //检查登录状态
+      /*
+      * Step 1
+      * Check whether the user has access
+      */
+
       let localUser = util.session('token');
       if (!localUser || !localUser.token) {
         return vm.$router.push({ path: '/login', query: { from: vm.$router.currentRoute.path } });
       }
-      //设置请求头统一携带token
+
+      /*
+      * Step 2
+      * Set Authorization
+      */
+
       instance.defaults.headers.common['Authorization'] = 'Bearer ' + localUser.token;
-      //获取用户信息及权限数据
+
+      /*
+      * Step 2-1(This step is optional.)
+      * Get user`s permissions
+      * You can also get permission information upon user login, it depends on the implementation of the backend interface
+      */
+      
       instance.get(`/signin`, {
         params: {
           Authorization: localUser.token
         }
       }).then((res) => {
-        let userInfo = res.data;
-        //取得资源权限对象
-        let resourcePermission = vm.getPermission(userInfo);
-        //使用资源权限设置请求拦截
+        let userPermissions = res.data;
+        // Save information, if it is used elsewhere.
+        vm.$root.userData = userPermissions;
+
+        /*
+        * Step 3
+        * Get resourcePermission form user permissions
+        * Like this:
+        * { "get,/url1": true, "post,/url2": true, ... }
+        */
+        
+        let resourcePermission = vm.getResources(userPermissions);
+        
+        /*
+        * Step 4
+        * Get routePermission form user permissions
+        * Like this:
+        * { "/route1": true, "/route2": true, ... }
+        */
+        
+        let routePermission = vm.getRoutes(userPermissions);
+        
+        /*
+        * Step 5
+        * Setting request permission control through resourcePermission
+        */
+
         vm.setInterceptor(resourcePermission);
-        //获得实际路由
-        let allowedRouter = vm.getRoutes(userInfo);
-        //若无可用路由限制访问
-        if (!allowedRouter || !allowedRouter.length) {
-          util.session('token','');
-          return document.body.innerHTML = ('<h1>账号访问受限，请联系系统管理员！</h1>');
-        }
-        //动态注入路由
-        vm.extendRoutes(allowedRouter);
-        //保存数据用作他处，非必需
-        vm.menuData = allowedRouter;
-        vm.userData = userInfo;
-        //权限检验方法
+        
+        /*
+        * Step 6
+        * Adding routing privileges to users
+        */
+
+        vm.extendRoutes(routePermission);
+
+        /*
+        * Step 7
+        * Implementing $_has function, support for the directive "has" (in /main.js)
+        * Input: Array, like this: ['get,/some-uri']
+        * Output: Boolean
+        */
+        
         Vue.prototype.$_has = function(rArray) {
-          let resources = [];
+          let RequiredPermissions = [];
           let permission = true;
-          //提取权限数组
+          
           if (Array.isArray(rArray)) {
-            rArray.forEach(function(e) {
-              resources = resources.concat(e.p);
+            rArray.forEach(e => {
+              RequiredPermissions = RequiredPermissions.concat(e.p);
             });
           } else {
-            resources = resources.concat(rArray.p);
+            RequiredPermissions = rArray.p;
           }
-          //校验权限
-          resources.forEach(function(p) {
+          
+          for(let i=0;i<RequiredPermissions.length;i++){
+            let p = RequiredPermissions[i];
             if (!resourcePermission[p]) {
-              return permission = false;
+              permission = false;
+              break;
             }
-          });
+          }
+          
           return permission;
         }
-        //执行回调
+
         typeof callback === 'function' && callback();
       })
     },
     loginDirect: function(newPath){
+      /*
+      * Monitor login events
+      * Will trigger the events in views/login.vue
+      */
+
       this.signin(() => {
         this.$router.replace({path: newPath || '/'});
       });
     },
     logoutDirect: function(){
-      //清除session
+      /*
+      * Monitor logout events
+      * Will trigger the events in views/index.vue
+      */
+
+      //Clear local user information
       util.session('token','');
-      //清除请求权限控制
+      //Clear request permission
       instance.interceptors.request.eject(myInterceptor);
-      //清除菜单权限
-      this.$root.hashMenus = {};
-      //清除请求头token
+      //Clear Authorization
       instance.defaults.headers.common['Authorization'] = '';
-      //回到登录页
+      //Back to login page
       this.$router.replace({path: '/login'});
     }
   },
   created: function(newPath) {
+    /*
+    * Start from here!
+    */
     this.signin();
   }
 }

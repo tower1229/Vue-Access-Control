@@ -135,8 +135,8 @@ export default {
   },
   data() {
     return {
-      user: {},
-      menus: []
+      user: this.$root.userData,
+      menus: this.$root.menuData
     };
   },
   computed: {
@@ -161,15 +161,8 @@ export default {
     }
   },
   created: function() {
-    let user = this.$parent.userData;
-    if (user) {
-      this.user = user;
-    } else {
+    if (!this.user) {
       this.$router.push({ path: "/login" });
-    }
-    let menus = this.$parent.menuData;
-    if (menus) {
-      this.menus = menus;
     }
   }
 };
