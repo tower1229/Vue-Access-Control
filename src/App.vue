@@ -249,10 +249,15 @@ export default {
           
           if (Array.isArray(rArray)) {
             rArray.forEach(e => {
-              RequiredPermissions = RequiredPermissions.concat(e.p);
+              if(e && e.p){
+                RequiredPermissions = RequiredPermissions.concat(e.p);
+              }
             });
           } else {
-            RequiredPermissions = rArray.p;
+            if(rArray && rArray.p){
+              RequiredPermissions = rArray.p;
+            }
+            
           }
           
           for(let i=0;i<RequiredPermissions.length;i++){

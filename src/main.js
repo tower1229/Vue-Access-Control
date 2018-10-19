@@ -12,7 +12,7 @@ Vue.use(ElementUI);
 */
 
 Vue.directive('has', {
-  bind: function(el, binding) {
+  inserted: function(el, binding) {
     if (!Vue.prototype.$_has(binding.value)) {
       el.parentNode.removeChild(el);
     }

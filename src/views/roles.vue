@@ -58,7 +58,7 @@ export default {
     }
   },
   methods: {
-    fetchData(init) {
+    fetchData() {
       this.loading = true;
       role.request.r().then((res) => {
         this.list = res.data.content;
@@ -70,7 +70,7 @@ export default {
     }
   },
   created() {
-    this.fetchData(true)
+    this.fetchData()
   }
 }
 </script>
