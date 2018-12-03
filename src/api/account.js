@@ -19,9 +19,6 @@ const remove = {
 const edit = {
   p: ['put,/account/**'],
   r: params => {
-    let words = CryptoJS.enc.Utf8.parse(params.password);
-    let base64 = CryptoJS.enc.Base64.stringify(words);
-    params.password = base64;
     return instance.put(`${preUrlPath}/account/${params.id}`, params)
   }
 };
