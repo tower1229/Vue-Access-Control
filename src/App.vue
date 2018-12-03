@@ -300,7 +300,7 @@ export default {
       this.$router.replace({path: '/login'});
     }
   },
-  created: function(newPath) {
+  created: function() {
     /*
     * Start from here!
     */

@@ -61,13 +61,13 @@ export default {
     }
   },
   methods: {
-    fetchData(page) {
+    fetchData() {
       let vm = this;
       vm.loading = true;
       account.request.r().then((res) => {
         vm.list = res.data.content;
         vm.loading = false;
-      }).catch(error => {
+      }).catch(() => {
         vm.loading = false
       });
     },

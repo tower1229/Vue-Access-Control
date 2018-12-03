@@ -126,8 +126,6 @@
   </div>
 </template>
 <script>
-import instance from "../api";
-import { changePw } from "../api/account";
 
 export default {
   components: {
