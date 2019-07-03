@@ -98,7 +98,10 @@ export default {
             message: '登录异常！'
           });
         }
-      }).catch(util.catchError);
+      }).catch(err => {
+        vm.isBtnLoading = true;
+        util.catchError(err)
+      });
     }
   },
   created() {

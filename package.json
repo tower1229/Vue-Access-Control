@@ -18,16 +18,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "crypto-js": "^3.1.9-1",
-    "element-ui": "^2.8.2",
+    "element-ui": "^2.10.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
+    "@vue/cli-service": "^3.8.4",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
