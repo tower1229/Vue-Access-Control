@@ -135,7 +135,7 @@ export default {
         return document.body.innerHTML = ('<h1>账号访问受限，请联系系统管理员！</h1>');
       }
       
-      actualRouter.map(e => {
+      actualRouter = actualRouter.map(e => {
 
         // Copy 'children' to 'meta' for rendering menu.(This step is optional.)
 
@@ -143,17 +143,8 @@ export default {
           if (!e.meta) e.meta = {};
           e.meta.children = e.children;
         }
-        
-        // Add Per-Route Guard
-        // To prevent manual access to ultra vires routing after switching accounts
-        
-        return e.beforeEnter = (to, from, next) => {
-          if(routePermission[to.path]){
-            next()
-          }else{
-            next('/401')
-          }
-        }
+
+        return e
       });
 
       // Add actual routing to application
@@ -292,12 +283,8 @@ export default {
 
       //Clear local user information
       util.session('token','');
-      //Clear request permission
-      instance.interceptors.request.eject(myInterceptor);
-      //Clear Authorization
-      instance.defaults.headers.common['Authorization'] = '';
-      //Back to login page
-      this.$router.replace({path: '/login'});
+      // reload app
+      window.location.href = '/'
     }
   },
   created: function() {
