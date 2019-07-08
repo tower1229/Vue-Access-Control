@@ -81,7 +81,7 @@ export default {
             let hashKey = ((base ? base + '/' : '') + key.route).replace(/^\//, '');
             routeHash['/' + hashKey] = true;
             if (Array.isArray(key.children)) {
-              setMenu2Hash(key.children, key.route);
+              setMenu2Hash(key.children, (base ? base + '/' : '') + key.route);
             }
           }
         });
@@ -113,7 +113,7 @@ export default {
           let pathKey = (base ? base + '/' : '') + route.path;
           if (routePermission[pathKey]) {
             if (Array.isArray(route.children)) {
-              route.children = findLocalRoute(route.children, route.path);
+              route.children = findLocalRoute(route.children, (base ? base + '/' : '') + route.path);
             }
             replyResult.push(route);
           }

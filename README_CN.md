@@ -12,6 +12,8 @@
 
 Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
 
+后端权限管理功能可以参考[Vue-Scaffold](https://github.com/tower1229/Vue-Scaffold)项目。
+
 ## 文档
 
 [Vue2.0用户权限控制解决方案](http://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/)
