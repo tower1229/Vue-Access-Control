@@ -12,9 +12,6 @@ import instance from './api';
 import AllRoutesData from './router/fullpath';
 import * as util from './assets/util.js';
 
-// axios Interceptor
-
-let myInterceptor;
 
 export default {
   data() {
@@ -25,7 +22,7 @@ export default {
   },
   methods: {
     setInterceptor: function(resourcePermission) {
-      myInterceptor = instance.interceptors.request.use(config => {
+      instance.interceptors.request.use(config => {
         // Get request path
         
         let perName = config.url.replace(config.baseURL, '').split('?')[0];
