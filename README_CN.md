@@ -2,7 +2,7 @@
 
 # vue-access-control
 
-[![npm](https://img.shields.io/npm/v/vue-access-control.svg)](https://www.npmjs.com/package/vue-access-control/)  [![license](https://img.shields.io/github/license/tower1229/Vue-Access-Control.svg)]()
+[![Build Status](https://travis-ci.com/tower1229/Vue-Access-Control.svg?branch=master)](https://travis-ci.com/tower1229/Vue-Access-Control) [![license](https://img.shields.io/github/license/tower1229/Vue-Access-Control.svg)]()
 
 > :gem: Vue权限管理解决方案
 
@@ -12,7 +12,7 @@
 
 Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
 
-后端权限管理功能可以参考[Vue-Scaffold](https://github.com/tower1229/Vue-Scaffold)项目。
+权限管理相关功能实现可以参考[Vue-Scaffold](https://github.com/tower1229/Vue-Scaffold)项目。
 
 ## 文档
 
@@ -27,8 +27,6 @@ Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权�
 项目主页：http://refined-x.com/Vue-Access-Control/
 
 git：`git clone https://github.com/tower1229/Vue-Access-Control.git`
-
-npm：`npm i vue-access-control`
 
 
 ## 演示
