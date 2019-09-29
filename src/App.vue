@@ -281,7 +281,7 @@ export default {
       //Clear local user information
       util.session('token','');
       // reload app
-      window.location.href = '/'
+      window.location.href = process.env.BASE_URL || '/'
     }
   },
   created: function() {
