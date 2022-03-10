@@ -1,6 +1,3 @@
-<style>
-@import './assets/common.css';
-</style>
 
 <template>
   <router-view id="app" @login="loginDirect" @logout="logoutDirect"></router-view>
@@ -11,7 +8,6 @@ import Vue from 'vue';
 import instance from './api';
 import AllRoutesData from './router/fullpath';
 import * as util from './assets/util.js';
-
 
 export default {
   data() {
@@ -292,3 +288,7 @@ export default {
   }
 }
 </script>
+
+<style>
+@import './assets/common.css';
+</style>

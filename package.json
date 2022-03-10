@@ -14,8 +14,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -26,13 +25,9 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-plugin-eslint": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
-    "babel-eslint": "^10.1.0",
     "chokidar": "^3.5.1",
     "core-js": "^3.13.1",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.10.0",
     "mockjs": "^1.1.0",
     "vue-template-compiler": "^2.6.14"
   }
