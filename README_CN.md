@@ -1,6 +1,6 @@
 中文 | [English](README.md)
 
-# vue-access-control
+# vue-access-control V2
 
 [![Build Status](https://travis-ci.com/tower1229/Vue-Access-Control.svg?branch=master)](https://travis-ci.com/tower1229/Vue-Access-Control) [![license](https://img.shields.io/github/license/tower1229/Vue-Access-Control.svg)]()
 
@@ -12,7 +12,7 @@
 
 Vue-Access-Control是一套基于Vue/Vue-Router/axios 实现的前端用户权限控制解决方案，通过对路由、视图、请求三个层面的控制，使开发者可以实现任意颗粒度的用户权限控制。
 
-整合权限管理功能并做了易用性改进的脚手架可以参考[Vue-Scaffold](https://github.com/tower1229/Vue-Scaffold)项目。
+整合权限管理功能并做了易用性改进的脚手架可以参考 [CuttingMat](https://github.com/cutting-mat) 项目。
 
 ## 文档
 

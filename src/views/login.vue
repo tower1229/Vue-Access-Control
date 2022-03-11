@@ -23,7 +23,7 @@
   <div>
     <div class="g-center login-page" @keyup.enter="login">
       <el-form class="login-form">
-        <h1 class="main-title">Vue-Access-Control</h1>
+        <h1 class="main-title">Vue-Access-Control V2</h1>
         <p class="des">Frontend access control framework based Vue</p>
         <el-form-item>
           <el-input

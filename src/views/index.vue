@@ -2,7 +2,7 @@
 <template>
   <div class="g-body">
     <el-row type="flex" class="g-head">
-      <a href="http://refined-x.com" target="_blank" title="Vue权限控制" class="logo" >Vue-Access-Control</a>
+      <a href="http://refined-x.com" target="_blank" title="Vue权限控制" class="logo" >Vue-Access-Control V2</a>
       <div class="nav">
         <div class="usermenu" v-if="user.id">
           欢迎您：{{user.name}}
