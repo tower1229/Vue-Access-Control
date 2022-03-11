@@ -4,6 +4,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 全局css
+import "@/assets/common.css"
+
 // 路由
 import routeGenerator from '@/assets/router';
 const routeInstance = routeGenerator({
