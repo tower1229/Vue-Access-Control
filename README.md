@@ -8,11 +8,13 @@ English | [中文](README_CN.md)
 
 ![logo](https://refined-x.com/asset/vsc-logo.png)
 
+[A new version](https://github.com/tower1229/Vue-Access-Control/tree/v2) is ready, with a modular design that is less invasive to the business.
+
 ## Introduction
 
 Vue-Access-Control is a solution of front-end user rights control based on Vue/Vue-Router/axios,through the control of three levels of routing, view and request, the developer can realize the user authority control of any granularity.
 
-The management function can refer to [Vue-Scaffold](https://github.com/tower1229/Vue-Scaffold) project.
+The management function can refer to [CuttingMat](https://github.com/cutting-mat) project.
 
 ## Documentation
 
