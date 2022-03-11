@@ -6,9 +6,9 @@
   <div v-loading="loading">
     <!-- 操作 -->
     <div class="operation">
-      <el-button size="small" type="primary" v-has="[account.request]" @click="fetchData">查询</el-button>
-      <el-button size="small" type="danger" v-has="[account.remove]">删除</el-button>
-      <el-button size="small" v-if="$_has([account.request]) && canReset">重置</el-button>
+      <el-button size="small" type="primary" v-auth="[account.request]" @click="fetchData">查询</el-button>
+      <el-button size="small" type="danger" v-auth="[account.remove]">删除</el-button>
+      <el-button size="small" v-if="$_auth([account.request]) && canReset">重置</el-button>
       <el-button size="small" type="info" @click="requestNotAllowed">尝试发起越权请求</el-button>
     </div>
     <!-- table start  -->
@@ -32,10 +32,10 @@
       </el-table-column>
       <el-table-column label="操作" width="350" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" type="info" v-has="[account.edit]">编辑</el-button>
-          <el-button size="mini" type="success" v-has="[account.edit]">分配角色</el-button>
-          <el-button size="mini" type="warning" v-has="[account.edit]">重置密码</el-button>
-          <el-button size="mini" type="danger" v-has="[account.remove]">删除</el-button>
+          <el-button size="mini" type="info" v-auth="[account.edit]">编辑</el-button>
+          <el-button size="mini" type="success" v-auth="[account.edit]">分配角色</el-button>
+          <el-button size="mini" type="warning" v-auth="[account.edit]">重置密码</el-button>
+          <el-button size="mini" type="danger" v-auth="[account.remove]">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

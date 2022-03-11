@@ -126,6 +126,7 @@
   </div>
 </template>
 <script>
+import * as util from "../assets/util.js";
 
 export default {
   components: {
@@ -133,8 +134,8 @@ export default {
   },
   data() {
     return {
-      user: this.$root.userData,
-      menus: this.$root.menuData
+      user: this.$userData,
+      menus: this.$menuData
     };
   },
   computed: {
@@ -153,7 +154,7 @@ export default {
         type: "info"
       })
         .then(() => {
-          this.$emit("logout");
+          util.emit("logout");
         })
         .catch(() => {});
     }

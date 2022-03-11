@@ -1,9 +1,23 @@
 <style scoped>
-  #app{display: table;width:100%;}
-  .main-title{text-align: center;}
-  .des{text-align: center;color:#999;margin-bottom: 2em;}
-  .login-form{width: 400px;margin:13% auto 0;}
-  .login-page{background:#fff;}
+#app {
+  display: table;
+  width: 100%;
+}
+.main-title {
+  text-align: center;
+}
+.des {
+  text-align: center;
+  color: #999;
+  margin-bottom: 2em;
+}
+.login-form {
+  width: 400px;
+  margin: 13% auto 0;
+}
+.login-page {
+  background: #fff;
+}
 </style>
 <template>
   <div>
@@ -15,97 +29,106 @@
           <el-input
             :autofocus="true"
             placeholder="请输入账号"
-            v-model="username">
-            <template slot="prepend"><i class="el-icon-mobile-phone"></i></template>
+            v-model="username"
+          >
+            <template slot="prepend"
+              ><i class="el-icon-mobile-phone"></i
+            ></template>
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-input
-            placeholder="请输入密码"
-            type="password"
-            v-model="password">
+          <el-input placeholder="请输入密码" type="password" v-model="password">
             <template slot="prepend"><i class="el-icon-info"></i></template>
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button style="width:100%" @click.native="login" type="primary" :loading="isBtnLoading">{{btnText}}</el-button>
+          <el-button
+            style="width: 100%"
+            @click.native="login"
+            type="primary"
+            :loading="isBtnLoading"
+            >{{ btnText }}</el-button
+          >
         </el-form-item>
-        <el-row style="text-align:center">
+        <el-row style="text-align: center">
           <el-col :span="8">
-            <a href="https://github.com/tower1229/Vue-Access-Control" target="_blank"><el-button type="text" icon="el-icon-info">Github</el-button></a>
+            <a
+              href="https://github.com/tower1229/Vue-Access-Control"
+              target="_blank"
+              ><el-button type="text" icon="el-icon-info">Github</el-button></a
+            >
           </el-col>
           <el-col :span="8">
-            <a href="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_blank"><el-button type="text" icon="el-icon-info">介绍</el-button></a>
+            <a
+              href="https://refined-x.com/2017/11/28/Vue2.0%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+              target="_blank"
+              ><el-button type="text" icon="el-icon-info">介绍</el-button></a
+            >
           </el-col>
           <el-col :span="8">
-            <a href="https://refined-x.com/" target="_blank"><el-button type="text" icon="el-icon-info">博客</el-button></a>
+            <a href="https://refined-x.com/" target="_blank"
+              ><el-button type="text" icon="el-icon-info">博客</el-button></a
+            >
           </el-col>
-          
         </el-row>
-        
       </el-form>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import CryptoJS from "crypto-js";
-import * as util from '../assets/util.js';
+import * as util from "../assets/util.js";
 //登录
-const requestLogin = params => {
+const requestLogin = (params) => {
   let words = CryptoJS.enc.Utf8.parse(params.password);
   let base64 = CryptoJS.enc.Base64.stringify(words);
   params.password = base64;
-  return axios.get(`http://rap2api.taobao.org/app/mock/224/web`, {params})
+  return axios.get(`http://rap2api.taobao.org/app/mock/224/web`, { params });
 };
 
 export default {
   data() {
     return {
-      username: '',
-      password: '',
-      isBtnLoading: false
+      username: "",
+      password: "",
+      isBtnLoading: false,
     };
   },
   computed: {
     btnText() {
-      if (this.isBtnLoading) return '登录中...';
-      return '登录';
-    }
+      if (this.isBtnLoading) return "登录中...";
+      return "登录";
+    },
   },
   methods: {
     login() {
       var vm = this;
       if (!vm.username) {
-        vm.$message.error('请填写用户名！！！');
+        vm.$message.error("请填写用户名！！！");
         return;
       }
       if (!vm.password) {
-        vm.$message.error('请填写密码');
+        vm.$message.error("请填写密码");
         return;
       }
 
-      let loginParams = {name: vm.username, password: vm.password};
+      let loginParams = { name: vm.username, password: vm.password };
       vm.isBtnLoading = true;
-      requestLogin(loginParams).then(res => {
-        vm.isBtnLoading = false;
-        if(res.data.token){
-          util.session('token', res.data);
-          vm.$emit('login', vm.$router.currentRoute.query.from);
-        }else{
-          return Promise.reject({
-            message: '登录异常！'
+      requestLogin(loginParams)
+        .then((res) => {
+          vm.isBtnLoading = false;
+          // 登录后全局发布 login 事件, 将在app.vue里接收
+          util.emit("login", {
+            redirect: this.$router.currentRoute.query.redirect || "/",
+            data: res.data,
           });
-        }
-      }).catch(err => {
-        vm.isBtnLoading = true;
-        util.catchError(err)
-      });
-    }
+        })
+        .catch((err) => {
+          vm.isBtnLoading = true;
+        });
+    },
   },
-  created() {
-    sessionStorage.clear();
-  }
 };
 </script>

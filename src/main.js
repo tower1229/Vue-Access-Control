@@ -1,27 +1,32 @@
 import Vue from 'vue';
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
-import App from './App.vue';
-import router from './router';
-
 Vue.use(ElementUI);
 
-/*
-* v-has
-*/
+// 路由
+import routeGenerator from '@/assets/router';
+const routeInstance = routeGenerator({
+    beforeEach: ((to, from, next) => {
+        if (to.name) {
+            document.title = to.meta.title || to.name;
+        }
+        next()
+    })
+})
 
-Vue.directive('has', {
-  inserted: function(el, binding) {
-    if (Vue.prototype.$_has && !Vue.prototype.$_has(binding.value)) {
-      el.parentNode.removeChild(el);
-    }
-  }
+// 登录鉴权
+import Permission from "@/assets/permission";
+Vue.use(Permission, {
+    AccessControl: true,    // 权限控制
+    routeInstance
 });
+
+// 应用启动
+import App from './App.vue';
 
 new Vue({
-  el: '#app',
-  router,
-  render: h => h(App)
-});
+    router: routeInstance,
+    render: h => h(App)
+}).$mount('#app');
 

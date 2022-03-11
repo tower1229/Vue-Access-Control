@@ -15,9 +15,9 @@
   <div v-loading="loading">
     <!-- 操作 -->
     <div class="operation">
-      <el-button size="small" type="primary" v-has="[role.request]" @click="fetchData">查询</el-button>
-      <el-button size="small" type="danger" v-has="[role.remove]">删除</el-button>
-      <el-button size="small" v-if="$_has([role.request]) && canReset">重置</el-button>
+      <el-button size="small" type="primary" v-auth="[role.request]" @click="fetchData">查询</el-button>
+      <el-button size="small" type="danger" v-auth="[role.remove]">删除</el-button>
+      <el-button size="small" v-if="$_auth([role.request]) && canReset">重置</el-button>
       <el-button size="small" type="info" @click="requestNotAllowed">尝试发起越权请求</el-button>
     </div>
     <!-- table start  -->

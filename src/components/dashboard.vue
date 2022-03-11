@@ -5,7 +5,7 @@
 <template>
   <el-row>
     <el-col :span="6">
-      <dashboard-goods v-if="$_has([goods.request])" />
+      <dashboard-goods v-if="$_auth([goods.request])" />
     </el-col>
   </el-row>
 </template>

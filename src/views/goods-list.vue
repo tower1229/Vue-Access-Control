@@ -6,9 +6,9 @@
   <div v-loading="loading">
     <!-- 操作 -->
     <div class="operation">
-      <el-button size="small" type="primary" v-has="[goods.request]" @click="fetchData">查询</el-button>
-      <el-button size="small" type="danger" v-has="[goods.remove]">删除</el-button>
-      <el-button size="small" v-if="$_has([goods.request]) && canReset">重置</el-button>
+      <el-button size="small" type="primary" v-auth="[goods.request]" @click="fetchData">查询</el-button>
+      <el-button size="small" type="danger" v-auth="[goods.remove]">删除</el-button>
+      <el-button size="small" v-if="$_auth([goods.request]) && canReset">重置</el-button>
       <el-button size="small" type="info" @click="requestNotAllowed">尝试发起越权请求</el-button>
     </div>
     <!-- list -->
@@ -23,8 +23,7 @@
       </el-table-column>
       <el-table-column prop="standard" label="规格型号">
       </el-table-column>
-      <el-table-column prop="creation_time_beauty" label="创建时间" align="center">
-      </el-table-column>
+
     </el-table>
     
   </div>
