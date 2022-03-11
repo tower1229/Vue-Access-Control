@@ -67,16 +67,16 @@ export default {
       return resourceHash;
     },
     getRoutes: function(userPermissions) {
-      let routeHash = {};
+      let routePermission = {};
       let setMenu2Hash = function(array, base) {
-        array.map(key => {
-          if (key.route) {
-            let hashKey = ((base ? base + '/' : '') + key.route).replace(/^\//, '');
-            routeHash['/' + hashKey] = true;
-            if (Array.isArray(key.children)) {
-              setMenu2Hash(key.children, (base ? base + '/' : '') + key.route);
+        array.forEach((router) => {
+            if (router.route) {
+                let hashKey = router.route.indexOf('/') === 0 ? router.route : [base, router.route].join(base === '/' ? '' : '/');
+                routePermission[hashKey] = true;
+                if (Array.isArray(router.children)) {
+                    setMenu2Hash(router.children, hashKey);
+                }
             }
-          }
         });
       };
       if (Array.isArray(userPermissions.menus)) {
@@ -93,7 +93,7 @@ export default {
         setMenu2Hash(arrayMenus);
       }
       // Get hash structure
-      return routeHash;
+      return routePermission;
     },
     extendRoutes: function(routePermission) {
 
@@ -205,7 +205,7 @@ export default {
         */
         
         let routePermission = vm.getRoutes(userPermissions);
-        
+        console.log('routePermission', routePermission)
         /*
         * Step 5
         * Setting request permission control through resourcePermission
