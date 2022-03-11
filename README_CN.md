@@ -8,7 +8,9 @@
 
 ![logo](https://refined-x.com/asset/vsc-logo.png)
 
-[全新版本](https://github.com/tower1229/Vue-Access-Control/tree/v2)已就绪，模块化设计，对业务侵入性更小。
+## [全新版本](https://github.com/tower1229/Vue-Access-Control/tree/v2)已就绪，模块化设计，对业务侵入性更小，完全兼容V1版接口数据。
+
+-----
 
 ## 介绍
 

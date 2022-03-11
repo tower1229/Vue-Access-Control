@@ -8,7 +8,9 @@ English | [中文](README_CN.md)
 
 ![logo](https://refined-x.com/asset/vsc-logo.png)
 
-[A new version](https://github.com/tower1229/Vue-Access-Control/tree/v2) is ready, with a modular design that is less invasive to the business.
+## [A new version](https://github.com/tower1229/Vue-Access-Control/tree/v2) is ready, with a modular design that is less invasive to the business, fully compatible with V1 version interface data
+
+-----
 
 ## Introduction
 
