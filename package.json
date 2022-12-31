@@ -24,8 +24,8 @@
     "vue-router": "^3.5.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-service": "^4.5.13",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "chokidar": "^3.5.1",
     "core-js": "^3.13.1",
     "mockjs": "^1.1.0",
